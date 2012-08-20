@@ -17,8 +17,9 @@ COOLSTRAP.Framework.Navigation = ((cool, window) ->
   SELECTORS =
     HREF_TARGET: "[role=\"main\"] a[href][data-target]"
     HREF_TARGET_FROM_ASIDE: "aside a[href][data-target]"
-
+  ###  
   console = cool.Console
+  # CAMBIAR ESTO A ROUTER
   _goSection = (section_id) ->
     section_id = cool.Util.parseUrl(section_id)
     cool.Navigate.section section_id
@@ -61,7 +62,8 @@ COOLSTRAP.Framework.Navigation = ((cool, window) ->
     switch target_type
       when TARGET.SECTION
         target_id = link.attr(ATTRIBUTE.HREF)
-        _goSection target_id, link_container
+        console.log("dsds")
+        #_goSection target_id, link_container
       when TARGET.ARTICLE
         _goArticle link
       when TARGET.ASIDE
@@ -69,6 +71,7 @@ COOLSTRAP.Framework.Navigation = ((cool, window) ->
       when TARGET.DIALOG
         _goDialog link
       when TARGET.BACK
+        console.log("back")
         _goBack link_container
       when TARGET.CLOSE
         _goDialog link, COMMAND.CLOSE_DIALOG
@@ -96,6 +99,7 @@ COOLSTRAP.Framework.Navigation = ((cool, window) ->
     _selectTarget link
     event.preventDefault()
 
+  ###
   
   ###
    * Initializes the automatic subscription events by markup of the project.
@@ -105,14 +109,19 @@ COOLSTRAP.Framework.Navigation = ((cool, window) ->
   ###
 
   setup = ->
+    
+    cool.Navigate.Router.setup()
+    ###
     if typeof document.documentElement.ontouchstart isnt "undefined"
       cool.dom(SELECTORS.HREF_TARGET_FROM_ASIDE).tap _loadTargetFromAside
       cool.dom(SELECTORS.HREF_TARGET).tap _loadTarget
     else
       cool.dom(SELECTORS.HREF_TARGET_FROM_ASIDE).click _loadTargetFromAside
       cool.dom(SELECTORS.HREF_TARGET).click _loadTarget
+    ###
     cool.Fallback.Android.buttons()
-    cool.Navigate.History.setup()
+    #cool.Navigate.History.setup()
+    
 
   setup: setup
 )(COOLSTRAP, window)

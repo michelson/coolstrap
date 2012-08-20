@@ -54,7 +54,7 @@ COOLSTRAP.View.Aside = ((cool) ->
       current_aside = ELEMENT.ASIDE + aside_id + "." + CLASS.CURRENT
       cool.dom(current_aside).removeClass CLASS.CURRENT
     ), TRANSITION.DURATION
-    cool.Navigate.History.clear aside_id
+    #cool.Navigate.History.clear aside_id
 
   _classFromAside = (aside) ->
     aside_class = aside.attr(ATTRIBUTE.CLASS)

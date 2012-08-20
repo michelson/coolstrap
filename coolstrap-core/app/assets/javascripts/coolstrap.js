@@ -15,6 +15,7 @@
 //=  require "coolstrap/framework/_Coolstrap.Framework.Navigation"
 //=  require "coolstrap/navigate/_Coolstrap.Navigate"
 //=  require "coolstrap/navigate/_Coolstrap.Navigate.History"
+//=  require "coolstrap/navigate/_Coolstrap.Navigate.Router"
 //=  require "coolstrap/view/_Coolstrap.View.Article"
 //=  require "coolstrap/view/_Coolstrap.View.Aside"
 //=  require "coolstrap/view/_Coolstrap.View.Scroll"

@@ -50,13 +50,17 @@ COOLSTRAP.Navigate = ((cool) ->
 
   aside = (aside_id) ->
     aside_id = cool.Util.parseUrl(aside_id)
+    console.log "el aside: " + aside_id
     target = ELEMENT.ASIDE + aside_id
+    console.log(cool.dom(target))
     if _existsTarget(target)
       is_visible = cool.dom(target).hasClass(CLASS.CURRENT)
       if is_visible
         cool.View.Aside.hide aside_id
       else
         cool.View.Aside.show aside_id
+      
+          
 
   dialog = (dialog_id, options) ->
     target = ELEMENT.DIALOG + dialog_id
@@ -86,6 +90,7 @@ COOLSTRAP.Navigate = ((cool) ->
     options = options or {}
     options.new_window = options.new_window or false
     if options.new_window
+      console.log("Are you kidding!")
       window.open url
     else
 
