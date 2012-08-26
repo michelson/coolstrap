@@ -77,6 +77,7 @@ module Coolstrap
           def copy_bridges
             ## for now raw cp, Todo: erb
             #FileUtils.cp_r(templates("bridges/."), location.join("native") )
+            puts "OEOEOEO"
             FileUtils.cp_r(vendor("cordova-ios/bin/templates/project/__TESTING__/."), location.join("native/ios") )
             
           end
