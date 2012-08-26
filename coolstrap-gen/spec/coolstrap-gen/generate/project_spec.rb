@@ -33,6 +33,7 @@ describe "Creating of a new Coolstrap Project" do
 
     it "should have a native/ios directory" do
       File.directory?("dailyfocus/native").should be_true
+      File.directory?("dailyfocus/native/ios").should be_true
     end
   end
 
