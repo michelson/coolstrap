@@ -1,4 +1,0 @@
-
-[submodule "coolstrap-gen/vendor/cordova-ios"]
-	path = coolstrap-gen/vendor/cordova-ios
-	url = git://github.com/apache/incubator-cordova-ios.git
