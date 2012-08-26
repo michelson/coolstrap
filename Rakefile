@@ -30,6 +30,12 @@ task :install do
   end
 end
 
+desc "install vendor"
+task :install_vendor do
+  FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios" )
+  FileUtils.cp "#{ROOT}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/app/assets/javascripts/"
+end
+
 desc "Clean pkg and other stuff"
 task :clean do
   GEM_PATHS.each do |g|
