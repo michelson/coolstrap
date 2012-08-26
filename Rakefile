@@ -32,7 +32,9 @@ end
 
 desc "install vendor"
 task :install_vendor do
-  FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios" )
+  FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
+  FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/bin/templates/project/__TESTING__.xcodeproj", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__.xcodeproj/" )
+
   FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/CordovaLib", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/CordovaLib" )
   FileUtils.cp "#{ROOT}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/app/assets/javascripts/"
 end
