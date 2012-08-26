@@ -61,7 +61,8 @@ module Coolstrap
                                "source/assets/stylesheets",
                                "source/assets/javascripts",
                                "source/views",
-                               "source/models", "native")
+                               "source/models", 
+                               "native", "native/ios")
           end
 
           def remove_old_files
@@ -75,8 +76,9 @@ module Coolstrap
 
           def copy_bridges
             ## for now raw cp, Todo: erb
-            FileUtils.cp_r(templates("bridges/."), location.join("native") )
-
+            #FileUtils.cp_r(templates("bridges/."), location.join("native") )
+            FileUtils.cp_r(vendor("cordova-ios/bin/templates/project/__TESTING__/."), location.join("native") )
+            
           end
 
           def source_root

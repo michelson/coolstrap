@@ -58,6 +58,10 @@ module Coolstrap::Gen
     def templates(path)
       ::Coolstrap::Gen.root.join('coolstrap-gen/templates').join(path)
     end
+    
+    def vendor(path)
+      ::Coolstrap::Gen.root.join('coolstrap-gen/vendor').join(path)
+    end
 
     def log(msg)
       ::Coolstrap::Gen::Logger.report(msg)

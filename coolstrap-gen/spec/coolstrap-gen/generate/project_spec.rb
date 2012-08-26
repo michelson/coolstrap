@@ -129,6 +129,6 @@ describe "Creating of a new Coolstrap Project" do
   end
 
   after(:all) do
-    remove_directories('dailyfocus')
+    #remove_directories('dailyfocus')
   end
 end
