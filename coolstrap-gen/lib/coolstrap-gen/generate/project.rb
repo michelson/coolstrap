@@ -77,8 +77,8 @@ module Coolstrap
           def copy_bridges
             ## for now raw cp, Todo: erb
             #FileUtils.cp_r(templates("bridges/."), location.join("native") )
-            FileUtils.cp_r(templates("bridges/cordova/ios/__TESTING__/."), location.join("native/ios") )
-            FileUtils.cp_r(templates("bridges/cordova/ios/__TESTING__.xcodeproj/."), location.join("native/ios") )
+            FileUtils.cp_r(templates("bridges/cordova/ios/__TESTING__/."), location.join("native/ios/__TESTING__") )
+            FileUtils.cp_r(templates("bridges/cordova/ios/__TESTING__.xcodeproj/."), location.join("native/ios/__TESTING__.xcodeproj") )
           end
 
           def source_root
