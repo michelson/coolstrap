@@ -82,7 +82,7 @@ module Coolstrap
             
             #### LINK CORDOVA APP
             puts "DD"
-            system "#{vendor('update_cordova_subproject').to_s} #{location.join("native/ios/__TESTING__.xcodeproj").to_s}"
+            system "python #{vendor('update_cordova_subproject').to_s}  #{location.join('native/ios/__TESTING__.xcodeproj').to_s}"
             puts "EE"
           end
 

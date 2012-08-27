@@ -43,7 +43,7 @@ def main(argv):
   project_path = AbsProjectPath(argv[1])
 
   parent_project_path = AbsParentPath(project_path)
-  cordova_lib_xcode_path = os.path.join(framework_path, 'CordovaLib', 'CordovaLib.xcodeproj')
+  cordova_lib_xcode_path = os.path.join(framework_path,'vendor','CordovaLib', 'CordovaLib.xcodeproj')
   subproject_path = os.path.relpath(cordova_lib_xcode_path, parent_project_path)
 
   # /* CordovaLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = CordovaLib.xcodeproj; sourceTree = "<group>"; };
