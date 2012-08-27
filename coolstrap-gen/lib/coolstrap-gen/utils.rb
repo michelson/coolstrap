@@ -84,6 +84,19 @@ module Coolstrap::Gen
         tr("-", "_").
         downcase
     end
+    
+    def gsub_file_util(relative_destination, regexp, *args, &block)
+      
+       path = destination_path(relative_destination)
+       content = File.read(path).gsub(regexp, *args, &block)
+       puts content
+       puts "UYUYUY"
+       File.open(path, 'wb') { |file| 
+         
+         file.write(content)
+       }
+    end
+    
 
   end
 end
