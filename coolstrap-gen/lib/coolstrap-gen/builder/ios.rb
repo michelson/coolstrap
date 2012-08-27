@@ -7,6 +7,12 @@ module Coolstrap::Gen
         def build(simulator_version="5.1")
           project_name = get_app_config["app_name"]
           project_path = "native/ios/#{project_name}.xcodeproj"
+          project_dir = "native/ios/#{project_path}"
+          
+          FileUtils.mkdir_p(project_dir + "/www")
+          
+          "ls -n build/ #{project_path}/www"
+          
           sdk = "iphonesimulator#{simulator_version}"
           
           sdk = `xcodebuild -showsdks | grep Sim | tail -1 | awk '{print $6}'`
