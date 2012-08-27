@@ -79,6 +79,11 @@ module Coolstrap
             #FileUtils.cp_r(templates("bridges/."), location.join("native") )
             FileUtils.cp_r(templates("bridges/cordova/ios/__TESTING__/."), location.join("native/ios/__TESTING__") )
             FileUtils.cp_r(templates("bridges/cordova/ios/__TESTING__.xcodeproj/."), location.join("native/ios/__TESTING__.xcodeproj") )
+            
+            #### LINK CORDOVA APP
+            puts "DD"
+            system "#{vendor('update_cordova_subproject').to_s} #{location.join("native/ios/__TESTING__.xcodeproj").to_s}"
+            puts "EE"
           end
 
           def source_root
