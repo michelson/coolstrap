@@ -38,7 +38,7 @@ task :install_vendor do
   #FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/bin/templates/project/__TESTING__-Info.plist", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__-Info.plist" )
   #FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/bin/templates/project/__TESTING__-Prefix.pch", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__-Prefix.pch" )
   
-  FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/CordovaLib", "#{ROOT}/coolstrap-gen/vendor" )
+  FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/CordovaLib", "#{ROOT}/coolstrap-gen/lib/vendor" )
   FileUtils.cp "#{ROOT}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/app/assets/javascripts/"
 
 
