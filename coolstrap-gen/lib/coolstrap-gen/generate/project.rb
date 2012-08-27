@@ -93,7 +93,7 @@ module Coolstrap
             gsub_file( native_path + '/main.m', "__TESTING__", @project_name)   
             gsub_file( native_path + "/#{@project_name}-Prefix.pch", "__TESTING__", @project_name)          
             #TODO
-            gsub_file( native_path + "/#{@project_name}"-Info.plist"", "__TESTING__", @project_name)          
+            gsub_file( native_path + "/#{@project_name}-Info.plist", "__TESTING__", @project_name)          
             #TODO"$BINDIR/replaces" "$R/$PROJECT_NAME-Info.plist" --ID-- $PACKAGE
 
             #### LINK CORDOVA APP LIB
