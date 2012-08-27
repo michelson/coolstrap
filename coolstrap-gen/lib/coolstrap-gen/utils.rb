@@ -83,9 +83,17 @@ module Coolstrap::Gen
         gsub(/([a-z\d])([A-Z])/,'\1_\2').
         tr("-", "_").
         downcase
-    end
-
+    end 
     
-
+    def gsub_file(path, flag, *args, &block)
+      begin
+        content = File.binread(path)
+        content.gsub!(flag, *args, &block)
+        File.open(path, 'wb') { |file| file.write(content) }
+      rescue => e
+        puts e
+        puts e.backtrace
+      end
+    end
   end
 end

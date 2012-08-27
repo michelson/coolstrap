@@ -3,7 +3,6 @@ module Coolstrap
   module Gen
     module Generate
       class Project < Thor
-        
         class << self
           attr_accessor :project_name, :device_platform, :app_id
           include ::Coolstrap::Gen::Utils
@@ -88,30 +87,37 @@ module Coolstrap
             
             native_path = location.join("native/ios/").join(@project_name)
             native_path = native_path.to_s
+            puts "behaviorbehaviorbehaviorbehaviorbehavior"
             #puts native_path + '.xcodeproj/project.pbxproj'
             #puts "AAAAAA SI EXISTE " if File.exists?(native_path + '.xcodeproj/project.pbxproj')
             gsub_file( native_path + '.xcodeproj/project.pbxproj', /__TESTING__/, @project_name )
-            #"$BINDIR/replaces" "$R.xcodeproj/project.pbxproj" __TESTING__ "$PROJECT_NAME"
             gsub_file( native_path + '/Classes/AppDelegate.h', "__TESTING__", @project_name)
-            #"$BINDIR/replaces" "$R/Classes/AppDelegate.h"     __TESTING__ "$PROJECT_NAME"
-            
+
             gsub_file( native_path + '/Classes/AppDelegate.m', "__TESTING__", @project_name)
-            #"$BINDIR/replaces" "$R/Classes/AppDelegate.m"     __TESTING__ "$PROJECT_NAME"
-            
+
             gsub_file( native_path + '/Classes/MainViewController.h', "__TESTING__", @project_name)
-            #"$BINDIR/replaces" "$R/Classes/MainViewController.h" __TESTING__ "$PROJECT_NAME"
 
             gsub_file( native_path + '/Classes/MainViewController.m', "__TESTING__", @project_name)    
-            #"$BINDIR/replaces" "$R/Classes/MainViewController.m" __TESTING__ "$PROJECT_NAME"
 
             gsub_file( native_path + '/main.m', "__TESTING__", @project_name)          
+            
+            #"$BINDIR/replaces" "$R.xcodeproj/project.pbxproj" __TESTING__ "$PROJECT_NAME"
+
+            #"$BINDIR/replaces" "$R/Classes/AppDelegate.h"     __TESTING__ "$PROJECT_NAME"
+            
+            #"$BINDIR/replaces" "$R/Classes/AppDelegate.m"     __TESTING__ "$PROJECT_NAME"
+            
+            #"$BINDIR/replaces" "$R/Classes/MainViewController.h" __TESTING__ "$PROJECT_NAME"
+            
+            #"$BINDIR/replaces" "$R/Classes/MainViewController.m" __TESTING__ "$PROJECT_NAME"
+
             #"$BINDIR/replaces" "$R/main.m"                    __TESTING__ "$PROJECT_NAME"
             
             #"$BINDIR/replaces" "$R/$PROJECT_NAME-Info.plist"  __TESTING__ "$PROJECT_NAME"
             
-            #"$BINDIR/replaces" "$R/$PROJECT_NAME-Prefix.pch"  __TESTING__ "$PROJECT_NAME"
+            #TODO"$BINDIR/replaces" "$R/$PROJECT_NAME-Prefix.pch"  __TESTING__ "$PROJECT_NAME"
             
-            #"$BINDIR/replaces" "$R/$PROJECT_NAME-Info.plist" --ID-- $PACKAGE
+            #TODO"$BINDIR/replaces" "$R/$PROJECT_NAME-Info.plist" --ID-- $PACKAGE
             
             #### LINK CORDOVA APP LIB
             system "python #{vendor('update_cordova_subproject').to_s}  #{location.join("native/ios/#{@project_name}.xcodeproj").to_s}"
