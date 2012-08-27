@@ -60,7 +60,7 @@ module Coolstrap::Gen
     end
     
     def vendor(path)
-      ::Coolstrap::Gen.root.join('coolstrap-gen/vendor').join(path)
+      ::Coolstrap::Gen.root.join('vendor').join(path)
     end
 
     def log(msg)
