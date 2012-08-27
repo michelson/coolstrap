@@ -77,13 +77,44 @@ module Coolstrap
           def copy_bridges
             ## for now raw cp, Todo: erb
             #FileUtils.cp_r(templates("bridges/."), location.join("native") )
-            FileUtils.cp_r(templates("bridges/cordova/ios/__TESTING__/."), location.join("native/ios/__TESTING__") )
-            FileUtils.cp_r(templates("bridges/cordova/ios/__TESTING__.xcodeproj/."), location.join("native/ios/__TESTING__.xcodeproj") )
+            FileUtils.cp_r(templates("bridges/cordova/ios/__TESTING__/."), location.join("native/ios/#{@project_name}") )
+            FileUtils.cp_r(templates("bridges/cordova/ios/__TESTING__.xcodeproj/."), location.join("native/ios/#{@project_name}.xcodeproj") )
+            
+            FileUtils.mv location.join("native/ios/#{@project_name}/__TESTING__-Info.plist"), location.join("native/ios/#{@project_name}/#{@project_name}-Info.plist") 
+            FileUtils.mv location.join("native/ios/#{@project_name}/__TESTING__-Prefix.pch"), location.join("native/ios/#{@project_name}/#{@project_name}-Prefix.pch") 
             
             #### LINK CORDOVA APP
-            puts "DD"
-            system "python #{vendor('update_cordova_subproject').to_s}  #{location.join('native/ios/__TESTING__.xcodeproj').to_s}"
-            puts "EE"
+            system "python #{vendor('update_cordova_subproject').to_s}  #{location.join("native/ios/#{@project_name}.xcodeproj").to_s}"
+            #### RENAME CORDOVA APP
+            
+            puts "ALOOOOO"
+            native_path = location.join("native/ios/#{@project_name}")
+            
+            gsub_file native_path+'.xcodeproj', "__TESTING__", @project_name
+            #"$BINDIR/replaces" "$R.xcodeproj/project.pbxproj" __TESTING__ "$PROJECT_NAME"
+            gsub_file native_path+'/Classes/AppDelegate.h', "__TESTING__", @project_name
+            #"$BINDIR/replaces" "$R/Classes/AppDelegate.h"     __TESTING__ "$PROJECT_NAME"
+            
+            gsub_file native_path+'/Classes/AppDelegate.m', "__TESTING__", @project_name
+            #"$BINDIR/replaces" "$R/Classes/AppDelegate.m"     __TESTING__ "$PROJECT_NAME"
+            
+            gsub_file native_path+'/Classes/MainViewController.h', "__TESTING__", @project_name
+            #"$BINDIR/replaces" "$R/Classes/MainViewController.h" __TESTING__ "$PROJECT_NAME"
+
+            gsub_file native_path+'/Classes/MainViewController.m', "__TESTING__", @project_name            
+            #"$BINDIR/replaces" "$R/Classes/MainViewController.m" __TESTING__ "$PROJECT_NAME"
+
+            gsub_file native_path+'/main.m', "__TESTING__", @project_name                        
+            #"$BINDIR/replaces" "$R/main.m"                    __TESTING__ "$PROJECT_NAME"
+            
+            #"$BINDIR/replaces" "$R/$PROJECT_NAME-Info.plist"  __TESTING__ "$PROJECT_NAME"
+            
+            #"$BINDIR/replaces" "$R/$PROJECT_NAME-Prefix.pch"  __TESTING__ "$PROJECT_NAME"
+            
+            #"$BINDIR/replaces" "$R/$PROJECT_NAME-Info.plist" --ID-- $PACKAGE
+            puts "ALOOOOOXXX"
+            
+            
           end
 
           def source_root
