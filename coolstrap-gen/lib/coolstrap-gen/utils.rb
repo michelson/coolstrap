@@ -14,11 +14,8 @@ module Coolstrap::Gen
       end
     end
 
-    def get_app_name
-      config  = File.open("tiapp.xml")
-      doc     = ::Nokogiri::XML(config)
-      config.close
-      doc.xpath('ti:app/name').text
+    def get_app_config(env="development")
+      YAML.load(open location.join("coolstrap.yml"))[env]
     end
 
     def remove_files(*files)

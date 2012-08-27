@@ -5,10 +5,16 @@ module Coolstrap::Gen
       class << self
         include ::Coolstrap::Gen::Utils
         def build(simulator_version="5.1")
-          project_name = "KitchenSink"
-          project_path = "native/ios/KitchenSink.xcodeproj"
+          project_name = get_app_config["app_name"]
+          project_path = "native/ios/#{project_name}.xcodeproj"
           sdk = "iphonesimulator#{simulator_version}"
-          system "xcodebuild -project '#{project_path}' -target '#{project_name}' -sdk '#{sdk}' -configuration Release" # Debug clean build
+          
+          sdk = `xcodebuild -showsdks | grep Sim | tail -1 | awk '{print $6}'`
+
+          system "xcodebuild -project #{project_path} -arch i386 -target #{project_name} -configuration Debug -sdk #{sdk} clean build VALID_ARCHS=\"i386\" CONFIGURATION_BUILD_DIR=\"#{project_path}/build\""
+          
+          #system "xcodebuild -project '#{project_path}' -target '#{project_name}' -sdk '#{sdk}' -configuration Release" # Debug clean build
+        
         end
 
         def deploy
