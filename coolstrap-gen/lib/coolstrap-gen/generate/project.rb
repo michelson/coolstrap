@@ -82,48 +82,23 @@ module Coolstrap
             FileUtils.mv location.join("native/ios/#{@project_name}/__TESTING__-Info.plist"), location.join("native/ios/#{@project_name}/#{@project_name}-Info.plist") 
             FileUtils.mv location.join("native/ios/#{@project_name}/__TESTING__-Prefix.pch"), location.join("native/ios/#{@project_name}/#{@project_name}-Prefix.pch") 
             
-            
             #### RENAME CORDOVA TEMPLATE
-            
             native_path = location.join("native/ios/").join(@project_name)
             native_path = native_path.to_s
-            puts "behaviorbehaviorbehaviorbehaviorbehavior"
-            #puts native_path + '.xcodeproj/project.pbxproj'
-            #puts "AAAAAA SI EXISTE " if File.exists?(native_path + '.xcodeproj/project.pbxproj')
             gsub_file( native_path + '.xcodeproj/project.pbxproj', /__TESTING__/, @project_name )
             gsub_file( native_path + '/Classes/AppDelegate.h', "__TESTING__", @project_name)
-
             gsub_file( native_path + '/Classes/AppDelegate.m', "__TESTING__", @project_name)
-
             gsub_file( native_path + '/Classes/MainViewController.h', "__TESTING__", @project_name)
-
             gsub_file( native_path + '/Classes/MainViewController.m', "__TESTING__", @project_name)    
-
-            gsub_file( native_path + '/main.m', "__TESTING__", @project_name)          
-            
-            #"$BINDIR/replaces" "$R.xcodeproj/project.pbxproj" __TESTING__ "$PROJECT_NAME"
-
-            #"$BINDIR/replaces" "$R/Classes/AppDelegate.h"     __TESTING__ "$PROJECT_NAME"
-            
-            #"$BINDIR/replaces" "$R/Classes/AppDelegate.m"     __TESTING__ "$PROJECT_NAME"
-            
-            #"$BINDIR/replaces" "$R/Classes/MainViewController.h" __TESTING__ "$PROJECT_NAME"
-            
-            #"$BINDIR/replaces" "$R/Classes/MainViewController.m" __TESTING__ "$PROJECT_NAME"
-
-            #"$BINDIR/replaces" "$R/main.m"                    __TESTING__ "$PROJECT_NAME"
-            
-            #"$BINDIR/replaces" "$R/$PROJECT_NAME-Info.plist"  __TESTING__ "$PROJECT_NAME"
-            
-            #TODO"$BINDIR/replaces" "$R/$PROJECT_NAME-Prefix.pch"  __TESTING__ "$PROJECT_NAME"
-            
+            gsub_file( native_path + '/main.m', "__TESTING__", @project_name)   
+            gsub_file( native_path + "/#{@project_name}-Prefix.pch", "__TESTING__", @project_name)          
+            #TODO
+            gsub_file( native_path + "/#{@project_name}"-Info.plist"", "__TESTING__", @project_name)          
             #TODO"$BINDIR/replaces" "$R/$PROJECT_NAME-Info.plist" --ID-- $PACKAGE
-            
+
             #### LINK CORDOVA APP LIB
             system "python #{vendor('update_cordova_subproject').to_s}  #{location.join("native/ios/#{@project_name}.xcodeproj").to_s}"
 
-            
-            
           end
 
           def source_root
