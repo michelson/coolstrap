@@ -125,7 +125,7 @@ module Coolstrap
           system "tar xzf master -C #{vendor}/incubator-cordova-ios/ --strip 1"
           system "rm master*"
 
-          say("Install templates", :green)
+          say("Install templates in #{vendor}/incubator-cordova-ios/", :green)
           FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
           FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__.xcodeproj", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__.xcodeproj/" )
 
