@@ -51,8 +51,6 @@ task :install_vendor do
   FileUtils.cp_r("#{vendor}/incubator-cordova-ios/CordovaLib", "#{vendor}" )
   FileUtils.cp "#{vendor}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{root}/coolstrap-gen/templates/app/assets/javascripts/"
 
-
-
 end
 
 desc "Clean pkg and other stuff"

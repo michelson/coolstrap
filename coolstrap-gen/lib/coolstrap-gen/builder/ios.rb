@@ -7,12 +7,15 @@ module Coolstrap::Gen
         def build(simulator_version="5.1")
           project_name = get_app_config["app_name"]
           project_path = "native/ios/#{project_name}.xcodeproj"
-          project_dir = "native/ios/#{project_path}"
-          
+          native_ios_path = "native/ios/"
+          project_dir = "native/ios/#{project_name}"
+          puts project_path
+          puts project_dir
           # move to project
-          FileUtils.mkdir_p(project_dir + "/www")
+          puts("symlink to #{native_ios_path + "/www"}")
+          FileUtils.mkdir_p(native_ios_path + "/www")
           
-          "ls -n build/ #{project_path}/www"
+          system "ls -n build/ #{native_ios_path}/www"
           
           #sdk = "iphonesimulator#{simulator_version}"
           
