@@ -9,11 +9,12 @@ module Coolstrap::Gen
           project_path = "native/ios/#{project_name}.xcodeproj"
           project_dir = "native/ios/#{project_path}"
           
+          # move to project
           FileUtils.mkdir_p(project_dir + "/www")
           
           "ls -n build/ #{project_path}/www"
           
-          sdk = "iphonesimulator#{simulator_version}"
+          #sdk = "iphonesimulator#{simulator_version}"
           
           sdk = `xcodebuild -showsdks | grep Sim | tail -1 | awk '{print $6}'`
 
