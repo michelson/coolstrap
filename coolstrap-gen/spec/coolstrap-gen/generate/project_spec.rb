@@ -106,9 +106,7 @@ describe "Creating of a new Coolstrap Project" do
   context "Inside the native dir ios" do
     it "should have created the images directory" do
       f = File.open("dailyfocus/native/ios/dailyfocus/main.m").readlines
-      #puts f
       f.join("").include?("dailyfocus")
-      #f.include?(/dailyfocus/).should be_true
     end
   end
 
