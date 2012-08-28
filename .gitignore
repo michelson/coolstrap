@@ -28,6 +28,7 @@ dailyfocus
 coolstrap-gen/lib/coolstrap-gen/templates/bridges/**/*
 coolstrap-gen/lib/vendor/CordovaLib
 incubator-cordova-ios/**/*
+coolstrap-gen/lib/vendor/incubator-cordova-ios
 
 Icon?
 

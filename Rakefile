@@ -32,20 +32,27 @@ end
 
 desc "install vendor"
 task :install_vendor do
-  say("Downloading Cordova ios")
-  system "wget --no-check-certificate https://github.com/apache/incubator-cordova-ios/zipball/master"
-  system "tar xzf master -C incubator-cordova-ios/ --strip 1"
-  system "rm master*"
-  
-  say("Install templates")
-  FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
-  FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/bin/templates/project/__TESTING__.xcodeproj", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__.xcodeproj/" )
 
-  #FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/bin/templates/project/__TESTING__-Info.plist", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__-Info.plist" )
-  #FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/bin/templates/project/__TESTING__-Prefix.pch", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__-Prefix.pch" )
-  say("Installing CordovaLib")
-  FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/CordovaLib", "#{ROOT}/coolstrap-gen/lib/vendor" )
-  FileUtils.cp "#{ROOT}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/app/assets/javascripts/"
+  root = "#{ROOT}/coolstrap-gen/lib"
+  vendor = "#{root}/vendor"
+  
+  say("Downloading Cordova ios in #{root}", :green)
+  system("mkdir -p #{vendor}/incubator-cordova-ios")
+  system "wget --no-check-certificate https://github.com/apache/incubator-cordova-ios/zipball/master"
+  system "tar xzf master -C #{vendor}/incubator-cordova-ios/ --strip 1"
+  system "rm master*"
+
+  say("Install templates", :green)
+  FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
+  FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__.xcodeproj", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__.xcodeproj/" )
+
+  say("Installing CordovaLib", :green)
+  
+  FileUtils.cp_r("#{vendor}/incubator-cordova-ios/CordovaLib", "#{vendor}" )
+  FileUtils.cp "#{vendor}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{root}/coolstrap-gen/templates/app/assets/javascripts/"
+
+
+
 end
 
 desc "Clean pkg and other stuff"
