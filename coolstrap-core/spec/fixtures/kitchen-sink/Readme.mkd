@@ -1,1 +1,0 @@
-# kitchen-sink - Created with Coolstrap, the mobile development framework.
