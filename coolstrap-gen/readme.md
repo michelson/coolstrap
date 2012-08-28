@@ -78,10 +78,10 @@ build
 
 ### Acknowledgments
   * Coolstrap team - Cristian Ferrari, Abraham Barrera, Felipe Funes - for their awesome work on coolstrap framework.
-  * This gem is heavily inspired in Ti gem from Robert Evans, so many of this gorgeous code was taken verbatim from that gem, the main difference is that I adapted the code to work with coolstrap mobile framework and middleman static page generator system.
+  * This gem is heavily inspired in Ti gem from Robert Evans, so many of this gorgeous code was taken verbatim from that gem, the main difference is that we adapted the code to work with coolstrap mobile framework and middleman static page generator system.
 
 ### Copyright
 
 Coolstrap mobile framework is licensed under Apache 2.0 by [Rhyboo](http://Rhyboo.com) & (http://needmorecaffeine.com | @needmorecaffeine)
 
-coolstrap-generator is a project started by Miguel Michelson and mantained by [Continuum](http://continuum.cl) under the same license as coolstrap.
+coolstrap-gen is a project started by Miguel Michelson and mantained by [Continuum](http://continuum.cl) under the same license as coolstrap.
