@@ -34,6 +34,8 @@ describe "Creating of a new Coolstrap Project" do
     it "should have a native/ios directory" do
       File.directory?("dailyfocus/native").should be_true
       File.directory?("dailyfocus/native/ios").should be_true
+      File.directory?("dailyfocus/native/ios/dailyfocus").should be_true
+      Dir["dailyfocus/native/ios/dailyfocus/*"].should_not be_empty
     end
   end
 
@@ -90,23 +92,23 @@ describe "Creating of a new Coolstrap Project" do
   context "Inside the Resources directory" do
 
     it "should have created the images directory" do
-      pending
-      File.directory?("dailyfocus/Resources/images").should be_true
+      File.directory?("dailyfocus/native/ios/dailyfocus/Resources/icons").should be_true
     end
 
-    it "should have created the vendor directory" do
-      pending
-      File.directory?("dailyfocus/Resources/vendor").should be_true
+    it "should have created the icons files within the Resources icons directory" do
+      File.exists?("dailyfocus/native/ios/dailyfocus/Resources/icons/icon.png").should be_true
+      File.exists?("dailyfocus/native/ios/dailyfocus/Resources/icons/icon@2x.png").should be_true
+      File.exists?("dailyfocus/native/ios/dailyfocus/Resources/icons/icon-72@2x.png").should be_true
+      File.exists?("dailyfocus/native/ios/dailyfocus/Resources/icons/icon-72.png").should be_true
     end
+  end
 
-    it "should have created the KS_nav_ui.png within the images directory" do
-      pending
-      File.exists?("dailyfocus/Resources/images/KS_nav_ui.png").should be_true
-    end
-
-    it "should have created the KS_nav_views.png within the images directory" do
-      pending
-      File.exists?("dailyfocus/Resources/images/KS_nav_views.png").should be_true
+  context "Inside the native dir ios" do
+    it "should have created the images directory" do
+      f = File.open("dailyfocus/native/ios/dailyfocus/main.m").readlines
+      #puts f
+      f.join("").include?("dailyfocus")
+      #f.include?(/dailyfocus/).should be_true
     end
   end
 
@@ -126,18 +128,6 @@ describe "Creating of a new Coolstrap Project" do
       File.directory?("dailyfocus/spec/views").should be_true
     end
 
-  end
-
-  context "Native Ios" do
-    
-    it "should generate project name" do
-      pending
-    end
-    
-    it "should replace content in files" do
-      pending
-    end
-    
   end
 
   after(:all) do

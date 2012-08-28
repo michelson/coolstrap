@@ -103,7 +103,7 @@ module Coolstrap
             system "python #{vendor('update_cordova_subproject').to_s}  #{location.join("native/ios/#{@project_name}.xcodeproj").to_s}"
             
             ## remove thrash ??
-            FileUtils.rm_r(location.join("native/ios/#{@project_name}/__TESTING__"))
+            #FileUtils.rm_r(location.join("native/ios/#{@project_name}/__TESTING__"))
           end
 
           def source_root
