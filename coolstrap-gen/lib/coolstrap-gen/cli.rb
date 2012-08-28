@@ -47,7 +47,7 @@ module Coolstrap::Gen
     #method_options :type => "all"
     #method_options :ver => "5.1"
     def build(type="", ver="5.1")
-      system "echo ::== COOLSTRAP BUILD =="
+      system "echo ::== COOLSTRAP BUILD ==::"
       case type
       when "mm"
         ::Coolstrap::Gen::Builder::Middleman.build
@@ -57,28 +57,6 @@ module Coolstrap::Gen
         ::Coolstrap::Gen::Builder::Middleman.build
         ::Coolstrap::Gen::Builder::Ios.build
       end
-    end
-    
-    desc "install_vendor", "downloads apache cordova & install templates"
-    def install_vendor
-      root = "#{::Coolstrap::Gen.root.to_s}"
-      vendor = "#{::Coolstrap::Gen.root.to_s}/vendor"
-      
-      say("Downloading Cordova ios in #{root}", :green)
-      system("mkdir -p #{vendor}/incubator-cordova-ios")
-      system "wget --no-check-certificate https://github.com/apache/incubator-cordova-ios/zipball/master"
-      system "tar xzf master -C #{vendor}/incubator-cordova-ios/ --strip 1"
-      system "rm master*"
-
-      say("Install templates", :green)
-      FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
-      FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__.xcodeproj", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__.xcodeproj/" )
-
-      say("Installing CordovaLib", :green)
-      
-      FileUtils.cp_r("#{vendor}/incubator-cordova-ios/CordovaLib", "#{vendor}" )
-      FileUtils.cp "#{vendor}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{root}/coolstrap-gen/templates/app/assets/javascripts/"
-      
     end
     
     register Coolstrap::Gen::Simulator::Ios, :simulate, "simulator", "ios simulator"

@@ -1,3 +1,5 @@
+# -*- encoding : utf-8 -*-
+
 require 'session'
 module Coolstrap
   module Gen
@@ -8,6 +10,7 @@ module Coolstrap
           include ::Coolstrap::Gen::Utils
           # Coolstrap::Generator::Generate::Project.create('demo', 'org.codewranglers.demo', 'ipad')
           def create(name, id, platform='iphone')
+            
             @project_name    = name
             @device_platform = platform
             @app_id          = id
@@ -108,16 +111,40 @@ module Coolstrap
           end
           
         end
-      
+        
+        include ::Coolstrap::Gen::Utils
+        
+        desc "install_vendor", "downloads apache cordova & install templates"
+        def install_vendor
+          root = "#{::Coolstrap::Gen.root.to_s}"
+          vendor = "#{::Coolstrap::Gen.root.to_s}/vendor"
+
+          say("Downloading Cordova ios in #{root}", :green)
+          system("mkdir -p #{vendor}/incubator-cordova-ios")
+          system "wget --no-check-certificate https://github.com/apache/incubator-cordova-ios/zipball/master"
+          system "tar xzf master -C #{vendor}/incubator-cordova-ios/ --strip 1"
+          system "rm master*"
+
+          say("Install templates", :green)
+          FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
+          FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__.xcodeproj", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__.xcodeproj/" )
+
+          say("Installing CordovaLib", :green)
+
+          FileUtils.cp_r("#{vendor}/incubator-cordova-ios/CordovaLib", "#{vendor}" )
+          FileUtils.cp "#{vendor}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{root}/coolstrap-gen/templates/app/assets/javascripts/"
+
+        end
+        
         map %(n) => 'new'
         desc "project new <name> ", "generates a new Coolstrap project."
         long_desc "Generates a new Coolstrap project. See 'coolstrap help new' for more information.
                   \n\nExample:
                   \n\ncoolstrap project new demo ==> Creates a new project skeleton."
         def new(name, device_id='org.mycompany.demo', platform='iphone')
-          if ::Coolstrap::Gen.Utils.check_vendor_existence?
-            say("CordovaLib dont detected installing first", :red)
-            ::Coolstrap::Gen::CLI.install_vendor
+          unless check_vendor_existence?
+            say("CordovaLib isn´t detected we are going to install it", :red)
+            invoke :install_vendor, []
           end
           ::Coolstrap::Gen::Generate::Project.create(name, device_id, platform)
         end
