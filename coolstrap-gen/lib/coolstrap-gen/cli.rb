@@ -59,6 +59,25 @@ module Coolstrap::Gen
       end
     end
     
+    
+    def install_vendors
+      say_status("Downloading Cordova ios")
+      root = ::Coolstrap::Gen.root.to_s
+      system "wget --no-check-certificate https://github.com/apache/incubator-cordova-ios/zipball/master"
+      system "tar xzf master -C #{}/incubator-cordova-ios/ --strip 1"
+      system "rm master*"
+
+      say_status("Install templates")
+      FileUtils.cp_r("#{root}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{root}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
+      FileUtils.cp_r("#{root}/incubator-cordova-ios/bin/templates/project/__TESTING__.xcodeproj", "#{root}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__.xcodeproj/" )
+
+      say_status("Installing CordovaLib")
+      
+      FileUtils.cp_r("#{root}/incubator-cordova-ios/CordovaLib", "#{root}/coolstrap-gen/lib/vendor" )
+      FileUtils.cp "#{root}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{root}/coolstrap-gen/lib/coolstrap-gen/templates/app/assets/javascripts/"
+      
+    end
+    
     register Coolstrap::Gen::Simulator::Ios, :simulate, "simulator", "ios simulator"
     register Coolstrap::Gen::Generate::Project, :project, "project", "project generator"
     register Coolstrap::Gen::Generate::View, :view, "view", "view generator"
