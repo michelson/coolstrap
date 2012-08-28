@@ -13,6 +13,10 @@ module Coolstrap::Gen
         File.open(location.join(name), 'w') { |f| f.write(contents) }
       end
     end
+    
+    def check_vendor_existense
+       Dir.exists? vendor("CordovaLib") && Dir.exists? vendor("incubator-cordova-ios") 
+    end
 
     def get_app_config(env="development")
       YAML.load(open location.join("coolstrap.yml"))[env]

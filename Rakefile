@@ -24,6 +24,8 @@ end
   
 desc "Run 'install' for all projects"
 task :install do
+  system = "rm -rf #{ROOT}/coolstrap-gen/lib/vendor/CordovaLib"
+  system = "rm -rf #{ROOT}/coolstrap-gen/lib/vendor/incubator-cordova-ios"
   GEM_PATHS.each do |dir|
     puts dir
     Dir.chdir(dir) { sh_rake(:install) }
