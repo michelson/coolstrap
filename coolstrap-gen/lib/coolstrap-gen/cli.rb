@@ -59,22 +59,25 @@ module Coolstrap::Gen
       end
     end
     
-    
-    def install_vendors
-      say_status("Downloading Cordova ios")
-      root = ::Coolstrap::Gen.root.to_s
+    desc "install_vendor", "downloads apache cordova & install templates"
+    def install_vendor
+      root = "#{::Coolstrap::Gen.root.to_s}"
+      vendor = "#{::Coolstrap::Gen.root.to_s}/vendor"
+      
+      say("Downloading Cordova ios in #{root}", :green)
+      system("mkdir -p #{vendor}/incubator-cordova-ios")
       system "wget --no-check-certificate https://github.com/apache/incubator-cordova-ios/zipball/master"
-      system "tar xzf master -C #{}/incubator-cordova-ios/ --strip 1"
+      system "tar xzf master -C #{vendor}/incubator-cordova-ios/ --strip 1"
       system "rm master*"
 
-      say_status("Install templates")
-      FileUtils.cp_r("#{root}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{root}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
-      FileUtils.cp_r("#{root}/incubator-cordova-ios/bin/templates/project/__TESTING__.xcodeproj", "#{root}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__.xcodeproj/" )
+      say("Install templates", :green)
+      FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
+      FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__.xcodeproj", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__.xcodeproj/" )
 
-      say_status("Installing CordovaLib")
+      say("Installing CordovaLib", :green)
       
-      FileUtils.cp_r("#{root}/incubator-cordova-ios/CordovaLib", "#{root}/coolstrap-gen/lib/vendor" )
-      FileUtils.cp "#{root}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{root}/coolstrap-gen/lib/coolstrap-gen/templates/app/assets/javascripts/"
+      FileUtils.cp_r("#{vendor}/incubator-cordova-ios/CordovaLib", "#{vendor}" )
+      FileUtils.cp "#{vendor}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{root}/coolstrap-gen/templates/app/assets/javascripts/"
       
     end
     
