@@ -12,10 +12,10 @@ module Coolstrap::Gen
           puts project_path
           puts project_dir
           # move to project
-          puts("symlink to #{native_ios_path + "/www"}")
-          FileUtils.mkdir_p(native_ios_path + "/www")
-          
-          system "ls -n build/ #{native_ios_path}/www"
+          puts("symlink to #{location.join(native_ios_path).join("www")}")
+          FileUtils.mkdir_p(location.join(native_ios_path).join("www"))
+          puts "location #{location.join("build")}"
+          system "cp -r #{location.join("build")}/ #{location.join(native_ios_path).join("www")}/"
           
           #sdk = "iphonesimulator#{simulator_version}"
           
