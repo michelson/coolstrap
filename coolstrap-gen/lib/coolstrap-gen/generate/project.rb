@@ -115,9 +115,9 @@ module Coolstrap
                   \n\nExample:
                   \n\ncoolstrap project new demo ==> Creates a new project skeleton."
         def new(name, device_id='org.mycompany.demo', platform='iphone')
-          if Coolstrap::Gen.Utils.check_vendor_existence?
+          if ::Coolstrap::Gen.Utils.check_vendor_existence?
             say("CordovaLib dont detected installing first", :red)
-            Coolstrap::Gen::CLI.install_vendor
+            ::Coolstrap::Gen::CLI.install_vendor
           end
           ::Coolstrap::Gen::Generate::Project.create(name, device_id, platform)
         end
