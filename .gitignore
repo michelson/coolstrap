@@ -27,7 +27,7 @@ Gemfile.lock
 dailyfocus
 coolstrap-gen/lib/coolstrap-gen/templates/bridges/**/*
 coolstrap-gen/lib/vendor/CordovaLib
-incubator-cordova-ios
+# incubator-cordova-ios
 
 Icon?
 

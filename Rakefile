@@ -32,6 +32,14 @@ end
 
 desc "install vendor"
 task :install_vendor do
+  
+  #system "wget --no-check-certificate https://github.com/apache/incubator-cordova-ios/zipball/master"
+  #system "tar xpvf master"
+  system "git submodule update"
+  #system "tar xzf master -C ./incubator-cordova-ios/"
+  
+  
+  
   FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
   FileUtils.cp_r("#{ROOT}/incubator-cordova-ios/bin/templates/project/__TESTING__.xcodeproj", "#{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__.xcodeproj/" )
 
