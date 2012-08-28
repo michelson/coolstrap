@@ -96,9 +96,11 @@ module Coolstrap
             gsub_file( native_path + "/#{@project_name}-Info.plist", "__TESTING__", @project_name)          
             #TODO"$BINDIR/replaces" "$R/$PROJECT_NAME-Info.plist" --ID-- $PACKAGE
 
-            #### LINK CORDOVA APP LIB
+            #### LINK CORDOVA LIB TO APP (maybe change it to ruby script ?? )
             system "python #{vendor('update_cordova_subproject').to_s}  #{location.join("native/ios/#{@project_name}.xcodeproj").to_s}"
-
+            
+            ## remove thrash ??
+            FileUtils.rm_r(location.join("native/ios/#{@project_name}/__TESTING__"))
           end
 
           def source_root

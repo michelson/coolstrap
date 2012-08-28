@@ -62,7 +62,6 @@ describe "Creating of a new Coolstrap Project" do
 
   context "Inside the source directory" do
 
-
     it "should have created the models directory" do
       File.directory?("dailyfocus/source/models").should be_true
     end
@@ -127,6 +126,18 @@ describe "Creating of a new Coolstrap Project" do
       File.directory?("dailyfocus/spec/views").should be_true
     end
 
+  end
+
+  context "Native Ios" do
+    
+    it "should generate project name" do
+      pending
+    end
+    
+    it "should replace content in files" do
+      pending
+    end
+    
   end
 
   after(:all) do
