@@ -6,13 +6,21 @@ module Coolstrap::Gen
         include ::Coolstrap::Gen::Utils
 
         def simulate
+          
+          project_name = get_app_config["app_name"]
+          native_ios_path = location.join("native/ios/")
+          app = "build/Debug-iphonesimulator/#{project_name}.app"
+          project_dir = location.join("native/ios/#{project_name}")
+          app_path = "#{native_ios_path}/#{app}"
+        	          
           # 4.3 simulator: /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iOS\ Simulator.app/
-          simulator_app = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\\ Simulator.app/Contents/MacOS/iPhone\\ Simulator -SimulateApplication"
-          app_path = "native/ios/build/Release-iphonesimulator/KitchenSink.app/KitchenSink"
+          #simulator_app = "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Applications/iPhone\\ Simulator.app/Contents/MacOS/iPhone\\ Simulator -SimulateApplication"
+          #app_path = "native/ios/build/Release-iphonesimulator/KitchenSink.app/KitchenSink"
           system "echo :::LAUNCHING IPHONE SIMULATOR:::"
           # We need to use the session gem so that we can access the user's aliases
           bash = Session::Bash::new 'program' => 'bash --login -i'
-          cmd = "#{simulator_app} #{app_path}"
+          #cmd = "#{simulator_app} #{app_path}"
+          cmd = "ios-sim launch \"#{app_path}\"" #--stderr \"#{project_dir}/tmp/console.log\" --stdout \"#{project_dir}/tmp/console.log\" "
           #system cmd # ok
           #bash.execute(cmd)
           bash.execute(cmd) { |out, err| puts out }
@@ -28,7 +36,7 @@ module Coolstrap::Gen
                 \n\ncoolstrap simulate ios ==> launch iphone simulator"
       def ios(simulator_version="5.1")
         system "echo ::== COOLSTRAP SIMULATOR ==::"
-        ::Coolstrap::Gen::Builder::Ios.build(simulator_version)
+        #::Coolstrap::Gen::Builder::Ios.build(simulator_version)
         ::Coolstrap::Gen::Simulator::Ios.simulate
           #system "echo you must pass ios or android to coolstrap simulate command."
       end
