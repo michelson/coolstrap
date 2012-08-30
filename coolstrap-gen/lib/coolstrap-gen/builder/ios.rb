@@ -10,8 +10,9 @@ module Coolstrap::Gen
           native_ios_path = location.join("native/ios/")
           project_dir = location.join("native/ios/#{project_name}")
           vendor_lib = "#{::Coolstrap::Gen.root.to_s}/vendor/CordovaLib"
-          puts project_path
-          puts project_dir
+          cordova_build = "#{vendor_lib}/build/Debug-iphonesimulator/"
+          #puts project_path
+          #puts project_dir
           # move to project
           #puts("symlink to #{location.join(native_ios_path).join("www")}")
           #puts("vendor is in #{vendor_lib}")
@@ -20,13 +21,13 @@ module Coolstrap::Gen
           system "cp -r #{location.join("build")}/ #{location.join(native_ios_path).join("www")}/"
           #sdk = "iphonesimulator#{simulator_version}"
           sdk = `xcodebuild -showsdks | grep Sim | tail -1 | awk '{print $6}'`
-          system "xcodebuild -project #{project_path} -arch i386 -target #{project_name} -configuration Debug -sdk #{sdk} clean build VALID_ARCHS=\"i386\" CONFIGURATION_BUILD_DIR=\"#{project_dir}/build\""
-          # system "xcodebuild -project #{project_path} -arch i386 -target #{project_name} -configuration Debug -sdk #{sdk} clean build VALID_ARCHS=\"i386\" CONFIGURATION_BUILD_DIR=\"#{project_dir}/build\" HEADER_SEARCH_PATHS=\"#{vendor_lib}/build/Debug-iphonesimulator/include/**\""
-          # system "xcodebuild -project #{project_path} -arch i386 -target #{project_name} -configuration Debug -sdk #{sdk} clean build VALID_ARCHS=\"i386\" CONFIGURATION_BUILD_DIR=\"#{project_path}/build\" HEADER_SEARCH_PATHS=\"#{vendor_lib}/build/Debug-iphonesimulator/include/**\""
-          # system "xcodebuild -project #{project_path} -arch i386 -target #{project_name} -configuration Debug -sdk #{sdk}" # clean build VALID_ARCHS=\"i386\"" #CONFIGURATION_BUILD_DIR=\"#{project_path}/build\""
-          # system "xcodebuild -project '#{project_path}' -target '#{project_name}' -sdk '#{sdk}' -configuration Debug"
-          # system "xcodebuild -project '#{project_path}' -target '#{project_name}' -sdk '#{sdk}' -configuration Release" # Debug clean build
-        
+          
+          #COPY HEADERS TO BUILD // Ugly hack for now until find a way to pass -IDir to cmd
+          if Dir.exists?(cordova_build) && Dir.exists?(location.join(native_ios_path).join("build"))
+            FileUtils.cp_r("#{cordova_build}/", location.join(native_ios_path).join("build"))
+          end
+          system "xcodebuild -project #{project_path} -arch i386 -target #{project_name} -configuration Debug -sdk #{sdk} clean build VALID_ARCHS=\"i386\" CONFIGURATION_BUILD_DIR=\"#{project_dir}/build\" -I#{cordova_build}/DerivedSources/i386 -I#{cordova_build}/DerivedSources"
+
         end
 
         def deploy
