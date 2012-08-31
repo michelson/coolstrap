@@ -11,18 +11,13 @@ module Coolstrap::Gen
           project_dir = location.join("native/ios/#{project_name}")
           vendor_lib = "#{::Coolstrap::Gen.root.to_s}/vendor/CordovaLib"
           cordova_build = "#{vendor_lib}/build/Debug-iphonesimulator/"
-          #puts project_path
-          #puts project_dir
-          # move to project
-          #puts("symlink to #{location.join(native_ios_path).join("www")}")
-          #puts("vendor is in #{vendor_lib}")
+
           FileUtils.mkdir_p(location.join(native_ios_path).join("www"))
-          #puts "location #{location.join("build")}"
           system "cp -r #{location.join("build")}/ #{location.join(native_ios_path).join("www")}/"
           #sdk = "iphonesimulator#{simulator_version}"
           sdk = `xcodebuild -showsdks | grep Sim | tail -1 | awk '{print $6}'`
           
-          #COPY HEADERS TO BUILD // Ugly hack for now until find a way to pass -IDir to cmd
+          #COPY HEADERS TO BUILD // Ugly hack until we find a way to pass -IDir to cmd propperly
           if Dir.exists?(cordova_build) && Dir.exists?(location.join(native_ios_path).join("build"))
             FileUtils.cp_r("#{cordova_build}/", location.join(native_ios_path).join("build"))
           end
