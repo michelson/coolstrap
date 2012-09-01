@@ -82,6 +82,15 @@ task :install_vendor do
   install_cordova_android
 end
 
+desc "install vendor"
+task :uninstall_vendor do
+  say("Uninstalling cordova libs")
+  root = "#{ROOT}/coolstrap-gen/lib"
+  vendor = "#{root}/vendor"
+  system("rm -r #{vendor}/incubator-cordova-ios")
+  system("rm -r #{vendor}/incubator-cordova-android")
+end
+
 desc "Clean pkg and other stuff"
 task :clean do
   GEM_PATHS.each do |g|
