@@ -1,5 +1,8 @@
 # Coolstrap Changelog
-
++ 1/sep/2012
+  + cli refactors.
+  + testing cli with local code gem.
+  + apache cordova ios integration for native bridge.
 + 22/jul/2012
   + refactor to generators cli, inherit from thor.
   + list generation separated in section and article partials. 
