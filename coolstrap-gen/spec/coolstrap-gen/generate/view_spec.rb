@@ -3,6 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 describe "Creating of a view file" do
   before(:all) do
     ::Coolstrap::Gen::Generate::Project.create('dailyfocus', 'org.codewranglers.demo', 'ipad')
+    FileUtils.cp(root + "/gemfile.tpl", "dailyfocus/Gemfile" )
   end
   
   context "Creating a view file and its spec" do
@@ -74,7 +75,7 @@ describe "Creating of a view file" do
   end
   
   after(:all) do
-    #remove_directories('dailyfocus', 'app', 'spec/views')
+    remove_directories('dailyfocus', 'app', 'spec/views')
   end
 
 end

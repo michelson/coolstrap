@@ -4,7 +4,6 @@ describe "Create project & build" do
   before(:all) do
     system("bundle exec coolstrap project new dailyfocus")
     FileUtils.cp(root + "/gemfile.tpl", "dailyfocus/Gemfile" )
-    
     #::Coolstrap::Gen::Generate::Project.create('dailyfocus', 'org.codewranglers.demo', 'ipad')
   end
   
@@ -12,9 +11,7 @@ describe "Create project & build" do
     before(:each) do
       system("cd dailyfocus && bundle show coolstrap")
       system("cd dailyfocus && bundle show coolstrap-gen")
-      #system("cd dailyfocus && bundle install")
       system("cd dailyfocus && bundle exec coolstrap build ios")
-      # system("cd dailyfocus && coolstrap build ios 5.1")
     end
     
     it "should have created the ios build directory" do

@@ -14,8 +14,8 @@ module Coolstrap::Gen
           system "echo :::LAUNCHING IPHONE SIMULATOR:::"
           # We need to use the session gem so that we can access the user's aliases
           bash = Session::Bash::new 'program' => 'bash --login -i'
-          cmd = "ios-sim launch \"#{app_path}\"" #--stderr \"#{project_dir}/tmp/console.log\" --stdout \"#{project_dir}/tmp/console.log\" "
-          bash.execute(cmd) { |out, err| puts out }
+          cmd = "ios-sim launch \"#{app_path}\" --stderr \"#{location.join('tmp/ios.log')}\" --stdout \"#{location.join('tmp/ios.log')}\" "
+          bash.execute(cmd) #{ |out, err| puts out }
         end
 
       end
@@ -30,8 +30,8 @@ module Coolstrap::Gen
         if yes?("Do you want to build html5 app ?", :green)
           ::Coolstrap::Gen::Builder::Middleman.build
         end
-        if yes?("Do you want to build ios app ?", :green) 
-          ::Coolstrap::Gen::Builder::Ios.build(simulator_version)
+        if yes?("Do you want to build XCode app ?", :green) 
+          ::Coolstrap::Gen::Builder::Ios.new.build
         end
         ::Coolstrap::Gen::Simulator::Ios.simulate
           #system "echo you must pass ios or android to coolstrap simulate command."

@@ -53,12 +53,10 @@ module Coolstrap::Gen
         ::Coolstrap::Gen::Builder::Middleman.build
       when "ios"
         ::Coolstrap::Gen::Builder::Ios.new.build
-        #::Coolstrap::Gen::Builder::Ios.start(['build'])
         #::Coolstrap::Gen::Builder::Ios.build(ver)
       else
         ::Coolstrap::Gen::Builder::Middleman.build
         ::Coolstrap::Gen::Builder::Ios.new.build
-        #::Coolstrap::Gen::Builder::Ios.start(['build'])
         #::Coolstrap::Gen::Builder::Ios.build
       end
     end
