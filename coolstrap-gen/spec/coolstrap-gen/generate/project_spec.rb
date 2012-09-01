@@ -2,7 +2,11 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
 describe "Creating of a new Coolstrap Project" do
   before(:all) do
-    ::Coolstrap::Gen::Generate::Project.create('dailyfocus', 'org.codewranglers.demo', 'ipad')
+    #::Coolstrap::Gen::Generate::Project.create('dailyfocus', 'org.codewranglers.demo', 'ipad')
+    system("bundle exec coolstrap project new dailyfocus")
+    FileUtils.cp(root + "/gemfile.tpl", "dailyfocus/Gemfile" )
+    system("cd dailyfocus && bundle show coolstrap")
+    system("cd dailyfocus && bundle show coolstrap-gen")
   end
 
   context "Directories should be created" do
@@ -111,6 +115,6 @@ describe "Creating of a new Coolstrap Project" do
   end
 
   after(:all) do
-    remove_directories('dailyfocus')
+    #remove_directories('dailyfocus')
   end
 end
