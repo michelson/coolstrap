@@ -17,10 +17,13 @@ module Coolstrap::Gen
           #sdk = "iphonesimulator#{simulator_version}"
           sdk = `xcodebuild -showsdks | grep Sim | tail -1 | awk '{print $6}'`
           
-          #COPY HEADERS TO BUILD // Ugly hack until we find a way to pass -IDir to cmd propperly
+          #COPY HEADERS TO BUILD (build & copy)// Ugly hack until we find a way to pass -IDir to cmd propperly
           if Dir.exists?(cordova_build) && Dir.exists?(location.join(native_ios_path).join("build"))
-            FileUtils.cp_r("#{cordova_build}/", location.join(native_ios_path).join("build"))
+            say("We dont find CordovaLib, hang on...", :red)
+            system "xcodebuild -project #{project_path} -arch i386 -target #{project_name} -configuration Debug -sdk #{sdk} clean build VALID_ARCHS=\"i386\" CONFIGURATION_BUILD_DIR=\"#{project_dir}/build\" -I#{cordova_build}/DerivedSources/i386 -I#{cordova_build}/DerivedSources"
+            FileUtils.cp_r("#{cordova_build}/", location.join(native_ios_path).join("build"))            
           end
+          say("Building XCode project", :green)
           system "xcodebuild -project #{project_path} -arch i386 -target #{project_name} -configuration Debug -sdk #{sdk} clean build VALID_ARCHS=\"i386\" CONFIGURATION_BUILD_DIR=\"#{project_dir}/build\" -I#{cordova_build}/DerivedSources/i386 -I#{cordova_build}/DerivedSources"
 
         end

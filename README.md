@@ -61,6 +61,13 @@
 
   This buidls ios app & opens Iphone simulator with you application. Android support is on the way.
 
+# Development
+
+  clone gem 
+
+   ➜ rake install_vendor
+
+
 ### Documentation
 
   > [See our wiki](https://github.com/rhyboo/coolstrap/wiki/_pages) for more information on how to test, develop and more.

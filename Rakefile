@@ -66,6 +66,7 @@ desc "Run 'install' for all projects"
 task :install do
   system "rm -rf #{ROOT}/coolstrap-gen/lib/vendor/CordovaLib"
   system "rm -rf #{ROOT}/coolstrap-gen/lib/vendor/incubator-cordova-ios"
+  system "rm -rf #{ROOT}/coolstrap-gen/lib/vendor/incubator-cordova-android"
   system "rm -rf #{ROOT}/coolstrap-gen/lib/coolstrap-gen/templates/bridges/cordova/ios/*"
   system "rm -rf #{ROOT}/dailyfocus"
   

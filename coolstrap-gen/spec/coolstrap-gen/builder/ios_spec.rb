@@ -17,6 +17,6 @@ describe "Creating of a view file" do
   end
 
   after(:all) do
-    remove_directories('dailyfocus', 'app', 'spec/views')
+    #remove_directories('dailyfocus', 'app', 'spec/views')
   end
 end
