@@ -31,10 +31,6 @@ RSpec.configure do |config|
     end
   end
   
-  def project_path
-    Pathname.new(Dir.pwd)
-  end
-  
   def root
     File.dirname(__FILE__)
   end

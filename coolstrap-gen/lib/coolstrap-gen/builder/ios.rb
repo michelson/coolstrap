@@ -5,12 +5,11 @@ module Coolstrap::Gen
       include ::Coolstrap::Gen::Utils
       no_tasks {
         def build(simulator_version="5.1")
-          #puts "DSDSSDDSDSDSDDSDSDSDSDSSD"
           project_name = get_app_config["app_name"]
           project_path = location.join("native/ios/#{project_name}.xcodeproj")
           native_ios_path = location.join("native/ios/")
           project_dir = location.join("native/ios/#{project_name}")
-          vendor_lib = "#{::Coolstrap::Gen.root.to_s}/vendor/CordovaLib"
+          vendor_lib = "#{::Coolstrap::Gen.root.to_s}/vendor/incubator-cordova-ios/CordovaLib"
           cordova_build = "#{vendor_lib}/build/Debug-iphonesimulator/"
           #check if there is middleman build app
           unless Dir.exists?(location.join("build"))

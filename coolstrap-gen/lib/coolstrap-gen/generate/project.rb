@@ -97,7 +97,7 @@ module Coolstrap
             gsub_file( native_path + "/#{@project_name}-Prefix.pch", "__TESTING__", @project_name)          
             gsub_file( native_path + "/#{@project_name}-Info.plist", "__TESTING__", @project_name)          
             #### LINK CORDOVA LIB TO APP (maybe change it to ruby script ?? )
-            system "python #{vendor('update_cordova_subproject').to_s}  #{location.join("native/ios/#{@project_name}.xcodeproj").to_s}"
+            system "python #{vendor('incubator-cordova-ios/bin/update_cordova_subproject').to_s}  #{location.join("native/ios/#{@project_name}.xcodeproj").to_s}"
             
           end
           
@@ -111,7 +111,7 @@ module Coolstrap
           
           def install_cordova_ios
             root = "#{::Coolstrap::Gen.root.to_s}"
-            vendor = "#{::Coolstrap::Gen.root.to_s}/vendor"
+            vendor = "#{root}/vendor"
 
             system("mkdir -p #{vendor}/incubator-cordova-ios")
             system "wget --no-check-certificate https://github.com/apache/incubator-cordova-ios/zipball/master"
@@ -125,26 +125,26 @@ module Coolstrap
 
             #say("Installing CordovaLib in #{vendor}/incubator-cordova-ios/CordovaLib", :green)
 
-            FileUtils.cp_r("#{vendor}/incubator-cordova-ios/CordovaLib", "#{vendor}" )
+            #FileUtils.cp_r("#{vendor}/incubator-cordova-ios/CordovaLib", "#{vendor}" ) ## mmmm....
             FileUtils.cp "#{vendor}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{root}/coolstrap-gen/templates/app/assets/javascripts/"
             
           end
           
           def install_cordova_android
-            root = "#{ROOT}/coolstrap-gen/lib"
+            root = "#{::Coolstrap::Gen.root.to_s}"
             vendor = "#{root}/vendor"
 
-            say("Downloading Cordova android in #{root}", :green)
+            #say("Downloading Cordova android in #{root}", :green)
             system("mkdir -p #{vendor}/incubator-cordova-android")
             system "wget --no-check-certificate https://github.com/apache/incubator-cordova-android/zipball/master"
             system "tar xzf master -C #{vendor}/incubator-cordova-android/ --strip 1"
             system "rm master*"
 
-            say("Install templates", :green)
+            #say("Install templates", :green)
             #FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
             #FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__.xcodeproj", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__.xcodeproj/" )
 
-            say("Installing CordovaLib", :green)
+            #say("Installing CordovaLib", :green)
 
             #FileUtils.cp_r("#{vendor}/incubator-cordova-ios/CordovaLib", "#{vendor}" )
             #FileUtils.cp "#{vendor}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{root}/coolstrap-gen/templates/app/assets/javascripts/"
@@ -159,6 +159,7 @@ module Coolstrap
         def install_vendor
           ::Coolstrap::Gen::Generate::Project.install_cordova_ios
           say("Downloading Cordova ios in #{::Coolstrap::Gen.root.to_s}/vendor", :green)
+          ::Coolstrap::Gen::Generate::Project.install_cordova_android
         end
         
         map %(n) => 'new'

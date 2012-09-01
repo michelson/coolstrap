@@ -15,7 +15,7 @@ module Coolstrap::Gen
     end
     
     def check_vendor_existence?
-       Dir.exists?( vendor("CordovaLib") ) && Dir.exists?( vendor("incubator-cordova-ios") )
+       Dir.exists?( vendor("incubator-cordova-android") ) && Dir.exists?( vendor("incubator-cordova-ios") )
     end
 
     def get_app_config(env="development")
