@@ -41,6 +41,12 @@ describe "Creating of a new Coolstrap Project" do
       File.directory?("dailyfocus/native/ios/dailyfocus").should be_true
       Dir["dailyfocus/native/ios/dailyfocus/*"].should_not be_empty
     end
+    
+    it "should have a native/ios directory" do
+      File.directory?("dailyfocus/native").should be_true
+      File.directory?("dailyfocus/native/android").should be_true
+      Dir["dailyfocus/native/android/*"].should_not be_empty
+    end
   end
 
   context "Top tier files should be created" do
