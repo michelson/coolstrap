@@ -30,6 +30,14 @@ RSpec.configure do |config|
       FileUtils.rm_rf(project_dir.join(name)) if FileTest.exists?(project_dir.join(name))
     end
   end
+  
+  def project_path
+    Pathname.new(Dir.pwd)
+  end
+  
+  def root
+    File.dirname(__FILE__)
+  end
 
   def fixture_file(type, filename)
     dir_name = type.to_s + "s"

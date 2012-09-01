@@ -1,5 +1,5 @@
 require "thor/group"
-require "coolstrap"
+#require "coolstrap"
 module Coolstrap::Gen
   class CLI < Thor
     include Utils
@@ -52,10 +52,14 @@ module Coolstrap::Gen
       when "mm"
         ::Coolstrap::Gen::Builder::Middleman.build
       when "ios"
-        ::Coolstrap::Gen::Builder::Ios.build(ver)
+        ::Coolstrap::Gen::Builder::Ios.new.build
+        #::Coolstrap::Gen::Builder::Ios.start(['build'])
+        #::Coolstrap::Gen::Builder::Ios.build(ver)
       else
         ::Coolstrap::Gen::Builder::Middleman.build
-        ::Coolstrap::Gen::Builder::Ios.build
+        ::Coolstrap::Gen::Builder::Ios.new.build
+        #::Coolstrap::Gen::Builder::Ios.start(['build'])
+        #::Coolstrap::Gen::Builder::Ios.build
       end
     end
     
