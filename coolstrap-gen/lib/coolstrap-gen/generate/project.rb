@@ -151,8 +151,7 @@ module Coolstrap
         def install_vendor
           ::Coolstrap::Gen::Generate::Project.install_cordova_ios
           ::Coolstrap::Gen::Generate::Project.install_cordova_android
-          
-          say("Downloading Cordova ios in #{::Coolstrap::Gen.root.to_s}/vendor", :green)
+          say("Cordova complete", :green)
         end
         
         map %(n) => 'new'
