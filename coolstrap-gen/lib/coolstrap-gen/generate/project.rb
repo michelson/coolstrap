@@ -135,6 +135,27 @@ module Coolstrap
             
           end
           
+          def install_cordova_android
+            root = "#{ROOT}/coolstrap-gen/lib"
+            vendor = "#{root}/vendor"
+
+            say("Downloading Cordova android in #{root}", :green)
+            system("mkdir -p #{vendor}/incubator-cordova-android")
+            system "wget --no-check-certificate https://github.com/apache/incubator-cordova-android/zipball/master"
+            system "tar xzf master -C #{vendor}/incubator-cordova-android/ --strip 1"
+            system "rm master*"
+
+            say("Install templates", :green)
+            #FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
+            #FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__.xcodeproj", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__.xcodeproj/" )
+
+            say("Installing CordovaLib", :green)
+
+            #FileUtils.cp_r("#{vendor}/incubator-cordova-ios/CordovaLib", "#{vendor}" )
+            #FileUtils.cp "#{vendor}/incubator-cordova-ios/bin/templates/project/www/cordova-2.1.0rc1.js", "#{root}/coolstrap-gen/templates/app/assets/javascripts/"
+            
+          end
+          
         end
         
         include ::Coolstrap::Gen::Utils

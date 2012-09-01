@@ -110,25 +110,7 @@ describe "Creating of a new Coolstrap Project" do
     end
   end
 
-  context "Inside the specs directory" do
-    it "should have created the app_spec.coffee file" do
-      pending
-      File.exists?("dailyfocus/spec/app_spec.coffee").should be_true
-    end
-
-    it "should have created the models directory" do
-      pending
-      File.directory?("dailyfocus/spec/models").should be_true
-    end
-
-    it "should have created the views directory" do
-      pending
-      File.directory?("dailyfocus/spec/views").should be_true
-    end
-
-  end
-
   after(:all) do
-    #remove_directories('dailyfocus')
+    remove_directories('dailyfocus')
   end
 end
