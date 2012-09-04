@@ -102,11 +102,12 @@ module Coolstrap
           end
           
           def copy_android_bridge
-            
+            # sanitize project name
+            @project_name = @project_name.gsub(/\W/, "")
             # generate app
             #FileUtils.cp_r("#{vendor}/incubator-cordova-ios/bin/templates/project/__TESTING__", "#{root}/coolstrap-gen/templates/bridges/cordova/ios/__TESTING__" )
             native_path = location.join("native/android").join(@project_name)
-            puts "#{vendor('incubator-cordova-android/bin/create').to_s} #{native_path} com.#{@project_name}.special #{@project_name.capitalize}"
+            #puts "#{vendor('incubator-cordova-android/bin/create').to_s} #{native_path} com.#{@project_name}.special #{@project_name.capitalize}"
             
             system "#{vendor('incubator-cordova-android/bin/create').to_s} #{native_path} com.#{@project_name}.special #{@project_name.capitalize}"
             
