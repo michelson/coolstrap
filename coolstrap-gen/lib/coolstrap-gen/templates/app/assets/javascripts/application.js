@@ -3,6 +3,6 @@
 //= require "coolstrap/lib/iscroll.js"
 
 //= require "coolstrap"
-//= require "cordova-2.1.0rc1.js"
+//= require "cordova-2.1.0rc2.js"
 //= require "app.js"
 //= require "router"
