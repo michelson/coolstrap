@@ -54,6 +54,8 @@ module Coolstrap::Gen
       when "ios"
         ::Coolstrap::Gen::Builder::Ios.new.build
         #::Coolstrap::Gen::Builder::Ios.build(ver)
+      when "android"
+        ::Coolstrap::Gen::Builder::Android.new.build
       else
         ::Coolstrap::Gen::Builder::Middleman.build
         ::Coolstrap::Gen::Builder::Ios.new.build
