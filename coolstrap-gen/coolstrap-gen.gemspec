@@ -19,8 +19,11 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
   
+  s.add_dependency("coolstrap", Coolstrap::VERSION)
+  
+  
   s.add_runtime_dependency(%q<coffee-script>,       ["~> 2.2.0"])
-
+  
   s.add_runtime_dependency(%q<colored>,             ["~> 1.2"])
   s.add_runtime_dependency(%q<rake>,                ["~> 0.9.2"])
   s.add_runtime_dependency(%q<nokogiri>,            ["~> 1.4.4"])

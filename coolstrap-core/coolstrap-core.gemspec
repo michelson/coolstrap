@@ -24,6 +24,9 @@ Gem::Specification.new do |s|
   # s.add_development_dependency "rspec"
   # s.add_runtime_dependency "rest-client"
   
+  s.add_dependency("coolstrap", Coolstrap::VERSION)
+  
+  
   s.add_runtime_dependency(%q<coffee-script>,       ["~> 2.2.0"])
 
   s.add_runtime_dependency(%q<colored>,             ["~> 1.2"])
