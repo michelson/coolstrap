@@ -64,6 +64,14 @@ module Coolstrap::Gen
       end
     end
     
+    
+    map %w(sim) => 'simulate'
+    desc "simulate", "simulate ios/android app"
+    long_desc "Build and simulate Coolstrap.
+              \n\nExample:
+              \n\ncoolstrap simulate ios ==> emulate iphone app.
+              \n\ncoolstrap simulate android ==> emulate android app."
+    
     def simulate(type="")
       system "echo ::== COOLSTRAP BUILD ==::"
       case type
