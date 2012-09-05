@@ -5,7 +5,7 @@ require 'rubygems' unless defined?(Gem)
 # require 'fileutils' unless defined?(FileUtils)
 require 'rake'
 
-require File.expand_path("../coolstrap/lib/coolstrap/version.rb", __FILE__)
+require File.expand_path("../coolstrap-core/lib/coolstrap-core/version.rb", __FILE__)
 
 ROOT = File.expand_path(File.dirname(__FILE__))
 GEM_NAME = 'coolstrap'
