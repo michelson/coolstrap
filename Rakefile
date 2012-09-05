@@ -111,7 +111,7 @@ end
 desc "Bumps the version number based on given version"
 task :bump, [:version] do |t, args|
   raise "Please specify version=x.x.x !" unless args.version
-  version_path = File.dirname(__FILE__) + '/coolstrap/lib/coolstrap/version.rb'
+  version_path = File.dirname(__FILE__) + '/coolstrap-core/lib/coolstrap-core/version.rb'
   version_text = File.read(version_path).sub(/VERSION = '[\d\.\w]+'/, "VERSION = '#{args.version}'")
   say "Updating Coolstrap to version #{args.version}"
   File.open(version_path, 'w') { |f| f.write version_text }
