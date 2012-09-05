@@ -8,12 +8,13 @@ module Coolstrap::Gen
         def simulate
           project_name = get_app_config["app_name"]
           native_android_path = location.join("native/android")
-          project_dir = location.join("native/android/#{project_name}")
+          project_dir = native_android_path.join("#{project_name}")
           system "echo :::LAUNCHING ANDROID SIMULATOR:::"
           # We need to use the session gem so that we can access the user's aliases
           bash = Session::Bash::new 'program' => 'bash --login -i'
-          cmd = "#{native_android_path.join('cordova/emulate')}"
-          bash.execute(cmd) #{ |out, err| puts out }
+          cmd = "#{project_dir.join('cordova/emulate')}"
+          puts cmd
+          bash.execute(cmd){ |out, err| puts out }
         end
 
       end
