@@ -23,10 +23,7 @@ Gem::Specification.new do |s|
 
   # specify any dependencies here; for example:
   # s.add_development_dependency "rspec"
-  # s.add_runtime_dependency "rest-client"
-  
-  s.add_dependency("coolstrap-core", Coolstrap::VERSION)
-  
+  # s.add_runtime_dependency "rest-client"  
   
   s.add_runtime_dependency(%q<coffee-script>,       ["~> 2.2.0"])
 
