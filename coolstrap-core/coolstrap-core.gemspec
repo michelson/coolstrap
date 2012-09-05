@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency(%q<thor>,                ["~> 0.15.4"])
   s.add_runtime_dependency(%q<compass>,             ["~> 0.7"])
   s.add_runtime_dependency(%q<session>,             ["~> 3.1"])
-  s.add_runtime_dependency(%q<middleman>,           ["~> 3.0.0"])
+  s.add_runtime_dependency(%q<middleman>,           ["~> 3.0.1"])
 
   # s.add_development_dependency(%q<bundler>,         ["~> 1.0.14"])
   s.add_development_dependency(%q<bundler>,         ["~> 1.1"])
