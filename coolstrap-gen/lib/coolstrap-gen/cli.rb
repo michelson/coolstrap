@@ -64,8 +64,18 @@ module Coolstrap::Gen
       end
     end
     
-    register Coolstrap::Gen::Simulator::Ios, :simulate, "simulator", "ios simulator"
-    register Coolstrap::Gen::Simulator::Android, :simulate, "simulator", "ios simulator"
+    def simulate(type="")
+      system "echo ::== COOLSTRAP BUILD ==::"
+      case type
+      when "ios"
+        ::Coolstrap::Gen::Simulator::Ios.ios
+      when "android"
+        ::Coolstrap::Gen::Simulator::Android.android
+      end
+    end
+    
+    #register Coolstrap::Gen::Simulator::Ios, :simulate, "simulator", "ios simulator"
+    #register Coolstrap::Gen::Simulator::Android, :simulate, "simulator", "ios simulator"
     
     register Coolstrap::Gen::Generate::Project, :project, "project", "project generator"
     register Coolstrap::Gen::Generate::View, :view, "view", "view generator"
