@@ -24,6 +24,7 @@ module Coolstrap::Gen
     map %w(--version -v) => 'info'
     desc "info", "information about Coolstrap::Generator."
     def info
+      require 'middleman-core/version'
       say "Version #{::Coolstrap::VERSION}"
     end
 
