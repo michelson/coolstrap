@@ -24,12 +24,12 @@ module Coolstrap
     
     module Builder
       autoload :Middleman,     'coolstrap-gen/builder/middleman.rb'
-      #genautoload :Android,     'coolstrap-gen/builder/android.rb'
+      autoload :Android,     'coolstrap-gen/builder/android.rb'
       autoload :Ios,     'coolstrap-gen/builder/ios.rb'
     end
     
     module Simulator
-      #autoload :Android,     'coolstrap-gen/simulator/middleman.rb'
+      autoload :Android,     'coolstrap-gen/simulator/android.rb'
       autoload :Ios,     'coolstrap-gen/simulator/ios.rb'
     end
 

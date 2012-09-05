@@ -1,4 +1,3 @@
-
 module Coolstrap::Gen
   module Builder
     class Ios < Thor

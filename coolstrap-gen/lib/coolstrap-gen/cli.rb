@@ -64,6 +64,8 @@ module Coolstrap::Gen
     end
     
     register Coolstrap::Gen::Simulator::Ios, :simulate, "simulator", "ios simulator"
+    register Coolstrap::Gen::Simulator::Android, :simulate, "simulator", "ios simulator"
+    
     register Coolstrap::Gen::Generate::Project, :project, "project", "project generator"
     register Coolstrap::Gen::Generate::View, :view, "view", "view generator"
     

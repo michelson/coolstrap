@@ -11,7 +11,7 @@ describe "Create project & build" do
     before(:each) do
       system("cd dailyfocus && bundle show coolstrap")
       system("cd dailyfocus && bundle show coolstrap-gen")
-      #system("cd dailyfocus && bundle exec coolstrap build ios")
+      system("cd dailyfocus && bundle exec coolstrap build android")
     end
     
     it "should have created the ios build directory" do
