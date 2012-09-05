@@ -11,6 +11,9 @@ module Coolstrap::Gen
           project_dir = location.join("native/ios/#{project_name}")
           vendor_lib = "#{::Coolstrap::Gen.root.to_s}/vendor/incubator-cordova-ios/CordovaLib"
           cordova_build = "#{vendor_lib}/build/Debug-iphonesimulator/"
+          sdk = `xcodebuild -showsdks | grep Sim | tail -1 | awk '{print $6}'`
+          build_cmd = "xcodebuild -project #{project_path} -arch i386 -target #{project_name} -configuration Debug -sdk #{sdk} clean build VALID_ARCHS=\"i386\" CONFIGURATION_BUILD_DIR=\"#{project_dir}/build\" -I#{cordova_build}/DerivedSources/i386 -I#{cordova_build}/DerivedSources"
+          
           #check if there is middleman build app
           unless Dir.exists?(location.join("build"))
             say("Build Static app before xcode", :green) 
@@ -19,19 +22,19 @@ module Coolstrap::Gen
         
           FileUtils.mkdir_p(location.join(native_ios_path).join("www"))
           system "cp -r #{location.join("build")}/ #{location.join(native_ios_path).join("www")}/"
-          #sdk = "iphonesimulator#{simulator_version}"
-          sdk = `xcodebuild -showsdks | grep Sim | tail -1 | awk '{print $6}'`
         
+          say("Building XCode project", :green)
+          system build_cmd
+          
           #COPY HEADERS TO BUILD (build & copy)// Ugly hack until we find a way to pass -IDir to cmd propperly
           if Dir.exists?(cordova_build) && !Dir.exists?(location.join(native_ios_path).join("build/Debug-iphonesimulator/include"))
             say("CordovaLib Headers aren't installed, hang on... we are going to build & copy & build", :red)
             sleep(2)
-            system "xcodebuild -project #{project_path} -arch i386 -target #{project_name} -configuration Debug -sdk #{sdk} clean build VALID_ARCHS=\"i386\" CONFIGURATION_BUILD_DIR=\"#{project_dir}/build\" -I#{cordova_build}/DerivedSources/i386 -I#{cordova_build}/DerivedSources"
+            system build_cmd
             FileUtils.cp_r("#{cordova_build}/", location.join(native_ios_path).join("build"))            
           end
-          say("Building XCode project", :green)
-          system "xcodebuild -project #{project_path} -arch i386 -target #{project_name} -configuration Debug -sdk #{sdk} clean build VALID_ARCHS=\"i386\" CONFIGURATION_BUILD_DIR=\"#{project_dir}/build\" -I#{cordova_build}/DerivedSources/i386 -I#{cordova_build}/DerivedSources"
-
+          #say("Building XCode project", :green)
+          #system build_cmd
         end
 
         def deploy
