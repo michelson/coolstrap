@@ -11,13 +11,14 @@ require 'rocco'
 require 'thor'
 require 'erubis'
 require 'nokogiri'
+require 'coolstrap-core'
 
 module Coolstrap
   module Gen
     
     ROOT_PATH = Pathname(__FILE__).dirname.expand_path
 
-    #autoload  :VERSION,       'coolstrap/version.rb'
+    autoload  :VERSION,       'coolstrap-core/version.rb'
     autoload  :CLI,           'coolstrap-gen/cli.rb'
     autoload  :Logger,        "coolstrap-gen/logger.rb"
     autoload  :Utils,         "coolstrap-gen/utils.rb"

@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
 
-require File.expand_path("../../coolstrap/lib/coolstrap/version.rb", __FILE__)
-#require "coolstrap/version"
+#require File.expand_path("../../coolstrap/lib/coolstrap-core/version.rb", __FILE__)
+require "coolstrap-core/version"
 
 Gem::Specification.new do |s|
   s.name        = "coolstrap-core"
   s.version     = Coolstrap::VERSION
+  s.platform    = Gem::Platform::RUBY
   s.authors     = ["Cristian Ferrari",  "Abraham Barrera", "Felipe Funes"]
   s.email       = ["cristianferrari@gmail.com"]
   s.homepage      = "http://www.getcoolstrap.com"
@@ -24,7 +25,7 @@ Gem::Specification.new do |s|
   # s.add_development_dependency "rspec"
   # s.add_runtime_dependency "rest-client"
   
-  s.add_dependency("coolstrap", Coolstrap::VERSION)
+  s.add_dependency("coolstrap-core", Coolstrap::VERSION)
   
   
   s.add_runtime_dependency(%q<coffee-script>,       ["~> 2.2.0"])
