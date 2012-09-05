@@ -27,7 +27,7 @@ module Coolstrap::Gen
       say "Version #{::Coolstrap::VERSION}"
     end
 
-    map %w(r) => 'server'
+    map %w(s) => 'server'
     desc "server ", "run middleman app"
     def server
       system "echo == :::COOLSTRAP STARTING::: =="

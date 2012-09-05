@@ -139,7 +139,7 @@ module Coolstrap::Gen
         
       }
     
-      map %w(s) => 'scaffold'
+      map %w(sfd) => 'scaffold'
       desc "view scaffold <list/complexlist/tabbar/toolbar/dialog> <domain> <name>", "generate a scaffold for Coolstrap elements."
       def scaffold(cs_type, domain, name)
         create(name, { 
