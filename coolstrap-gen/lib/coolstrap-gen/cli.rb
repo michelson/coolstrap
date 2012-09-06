@@ -76,9 +76,9 @@ module Coolstrap::Gen
       system "echo ::== COOLSTRAP BUILD ==::"
       case type
       when "ios"
-        ::Coolstrap::Gen::Simulator::Ios.ios
+        Coolstrap::Gen::Simulator::Ios.simulate
       when "android"
-        ::Coolstrap::Gen::Simulator::Android.android
+        ::Coolstrap::Gen::Simulator::Android.simulate
       end
     end
     
